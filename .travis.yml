@@ -98,5 +98,5 @@ jobs:
           #- sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
           - sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.cmake.sh dbg ./umbrella/onnc-build"
 
-    - stage: UbuntuTest
+    - stage: OsxTest
       script: 
