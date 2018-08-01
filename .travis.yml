@@ -50,7 +50,7 @@ matrix:
         - sudo docker exec -t container /bin/bash -c "apt-get update"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends curl"
         - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
-        - sudo docker exec -t container /bin/bash -c "tar xopf llvm-5.0.2.src.tar.xz"
+        - sudo docker exec -t container /bin/bash -c "tar Jxvf llvm-5.0.2.src.tar.xz"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends sudo"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends build-essential"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends gcc-arm-none-eabi"
@@ -79,7 +79,7 @@ matrix:
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake"
 
         - sudo docker exec -t container /bin/bash -c "curl https://cmake.org/files/v3.12/cmake-3.12.0.tar.gz --output cmake-3.12.0.tar.gz"
-        - sudo docker exec -t container /bin/bash -c "tar Jxvf cmake-3.12.0.tar.gz"
+        - sudo docker exec -t container /bin/bash -c "tar xvf cmake-3.12.0.tar.gz"
         - sudo docker exec -t container /bin/bash -c "cd cmake-3.12.0 && ./bootstrap && make -j8 && make install"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends g++"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends python"
