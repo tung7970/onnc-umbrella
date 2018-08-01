@@ -5,6 +5,12 @@ language: c
 sudo: required
 notifications: 
   email: false
+
+# Handle git submodules yourself
+git:
+    submodules: false
+
+
 services: 
   - docker
 stages: 
