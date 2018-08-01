@@ -31,12 +31,12 @@ matrix:
 
     - os: linux
       script: 
-          - sudo docker create --privileged=true -t --name ubuntu  centos:centos7
+          - sudo docker create --privileged=true -t --name container  centos:centos7
           - sudo docker start container
 
     - os: linux
       script: 
-          - sudo docker create --privileged=true -t --name ubuntu  fedora:27
+          - sudo docker create --privileged=true -t --name container  fedora:27
           - sudo docker start container
 
   
