@@ -2,6 +2,7 @@ branches:
   only: 
     - travis
 language: c
+sudo: required
 notifications: 
   email: false
 services: 
@@ -9,22 +10,12 @@ services:
 stages: 
   jobs: 
     before_install: 
-      - "sudo apt-get update"
-      - "sudo apt-get upgrade lxc-docker"
-      - "sudo service docker restart"
-      - "sleep 5"
-      - "sudo docker pull ubuntu:trusty"
-      - "sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty"
-      - "sudo docker start ubuntu"
-      - "sudo docker exec -t ubuntu /bin/bash -c \"apt-get update\""
-      - "sudo docker exec -t \"ubuntu\" /bin/bash -c \"apt-get install -y --no-install-recommends curl \\ sudo \\ build-essential \\ gcc-arm-none-eabi \\ libnewlib-arm-none-eabi \\ libboost-all-dev \\ pkg-config \\ python3 \\ python3-pip \\ python3-setuptools \\ libgoogle-glog-dev \\ libgtest-dev \\ libiomp-dev \\ libleveldb-dev \\ liblmdb-dev \\ libopencv-dev \\ libopenmpi-dev \\ libsnappy-dev \\ libprotobuf-dev \\ openmpi-bin \\ openmpi-doc \\ libgflags-dev \\ automake \\ libtool \\ xz-utils \\ make \\ cmake \\ g++ \\ python \\ llvm-5.0-tools \\ git \\ protobuf-compiler \\ libprotoc-dev \\ python-pip \\ python-dev \\ python-setuptools \\ bison \\ flex \\ ninja-build \\ cmake-curses-gui \\ clang-5.0 \\ clang-tidy-5.0 \\ clang-format-5.0 \\ gcovr\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"rm -rf /var/lib/apt/lists/*\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"pip install future numpy protobuf lit\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"pip3 install jinja2\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"git clone https://github.com/ONNC/umbrella.git\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"git submodule init\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"git submodule update\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"mkdir ./umbrella/onnc-build\""
-      - "sudo docker exec -t ubuntu /bin/bash -c \"./umbrella/build.sh dbg ./umbrella/onnc-build\""
-    stage: test
-sudo: required
+      - sudo apt-get update
+      - sudo apt-get upgrade lxc-docker
+      - sudo service docker restart
+      - sleep 5
+      - sudo docker pull ubuntu:trusty
+      - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
+      - sudo docker start ubuntu
+      - sudo docker exec -t ubuntu /bin/bash -c "apt-get update"
+    
