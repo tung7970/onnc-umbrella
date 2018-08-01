@@ -65,7 +65,12 @@ script:
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends libtool"
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends xz-utils"
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends make"
-          - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends cmake"
+          #- sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends cmake"
+
+          - sudo docker exec -t ubuntu /bin/bash -c "curl https://cmake.org/files/v3.12/cmake-3.12.0.tar.gz --output cmake-3.12.0.tar.gz"
+          - sudo docker exec -t ubuntu /bin/bash -c "tar xvf cmake-3.12.0.tar.gz"
+          - sudo docker exec -t ubuntu /bin/bash -c "cd cmake-3.12.0 && mkdir build && cd build && make ../"
+
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends g++"
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends python"
           - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends git"
