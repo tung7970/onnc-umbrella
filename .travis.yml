@@ -27,14 +27,14 @@ before_install:
   #if: os = linux
   # - stage: "Linux Test"               
 
-stages:
-  - name: UbuntuTest
-    if: os = linux
-  - name: OsxTest
-    if: os = osx
+#stages:
+#  - name: UbuntuTest
+#    if: os = linux
+#  - name: OsxTest
+#    if: os = osx
 
-jobs:
-    - stage: UbuntuTest
+#jobs:
+#    - stage: UbuntuTest
       script: 
           - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
           - sudo docker start ubuntu
@@ -97,6 +97,6 @@ jobs:
           #- sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
           - sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.cmake.sh dbg ./umbrella/onnc-build"
 
-    - stage: OsxTest
-      script: 
-          - echo "this is osx"
+ #   - stage: OsxTest
+ #     script: 
+ #          - echo "this is osx"
