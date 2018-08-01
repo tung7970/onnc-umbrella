@@ -22,7 +22,7 @@ before_install:
   - sudo apt-get update
   - sudo service docker restart
   - sleep 5
-  - sudo docker pull ubuntu:trusty
+
 
 matrix:
   include:
@@ -42,6 +42,7 @@ matrix:
   
     - os: linux
       script: 
+          - sudo docker pull ubuntu:trusty
           - sudo docker create --privileged=true -t --name container  ubuntu:trusty
           - sudo docker start container
           - sudo docker exec -t container /bin/bash -c "apt-get update"
@@ -88,10 +89,10 @@ matrix:
           - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends flex"
           - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends ninja-build"
           - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake-curses-gui"
-          - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends llvm-5.0-tools"
-          - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-5.0"
-          - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-tidy-5.0"
-          - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-format-5.0"
+          #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends llvm-5.0-tools"
+          #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-5.0"
+          #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-tidy-5.0"
+          #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-format-5.0"
           - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
           - sudo docker exec -t container /bin/bash -c "tar xvf llvm-5.0.2.src.tar.xz"
           - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
