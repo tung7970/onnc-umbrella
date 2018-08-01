@@ -49,7 +49,7 @@ matrix:
         - sudo docker start container
         - sudo docker exec -t container /bin/bash -c "apt-get update"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends curl"
-        - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
+        - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/5.0.2/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
         - sudo docker exec -t container /bin/bash -c "tar Jxvf llvm-5.0.2.src.tar.xz"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends sudo"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends build-essential"
