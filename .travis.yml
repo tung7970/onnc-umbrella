@@ -34,7 +34,6 @@ stages:
     if: os = osx
 
 jobs:
-  include:
     - stage: UbuntuTest
       script: 
           - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
