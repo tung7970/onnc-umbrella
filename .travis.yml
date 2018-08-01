@@ -13,15 +13,18 @@ git:
 
 services: 
   - docker
-stages: 
-  jobs: 
-    before_install: 
-      - sudo apt-get update
-      - sudo apt-get upgrade lxc-docker
-      - sudo service docker restart
-      - sleep 5
-      - sudo docker pull ubuntu:trusty
-      - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
-      - sudo docker start ubuntu
-      - sudo docker exec -t ubuntu /bin/bash -c "apt-get update"
-    
+
+
+before_install: 
+  - sudo apt-get update
+  - sudo apt-get upgrade lxc-docker
+  - sudo service docker restart
+  - sleep 5
+  - sudo docker pull ubuntu:trusty
+
+
+script: 
+  - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
+  - sudo docker start ubuntu
+  - sudo docker exec -t ubuntu /bin/bash -c "apt-get update"
+
