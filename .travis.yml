@@ -43,6 +43,7 @@ matrix:
 
   
     - os: linux
+     include:
       script: 
         - sudo docker pull ubuntu:trusty
         - sudo docker create --privileged=true -t --name container  ubuntu:trusty
