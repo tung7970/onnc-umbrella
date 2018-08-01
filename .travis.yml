@@ -75,10 +75,10 @@ jobs:
     #- sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends clang-5.0"
     #- sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends clang-tidy-5.0"
     #- sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends clang-format-5.0"
-    - sudo docker exec -t ubuntu /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz"
-    - sudo docker exec -t ubuntu /bin/bash -c "tar xvf llvm-5.0.2.src.tar.xz"
-    - sudo docker exec -t ubuntu /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
-    - sudo docker exec -t ubuntu /bin/bash -c "cd llvm-5.0.2.src && cd build && make -j4"
+    #- sudo docker exec -t ubuntu /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz"
+    #- sudo docker exec -t ubuntu /bin/bash -c "tar xvf llvm-5.0.2.src.tar.xz"
+    #- sudo docker exec -t ubuntu /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
+    #- sudo docker exec -t ubuntu /bin/bash -c "cd llvm-5.0.2.src && cd build && make -j4"
     - sudo docker exec -t ubuntu /bin/bash -c "apt-get install -y --no-install-recommends gcovr"
     - sudo docker exec -t ubuntu /bin/bash -c "rm -rf /var/lib/apt/lists/*"
     - sudo docker exec -t ubuntu /bin/bash -c "pip install future numpy protobuf lit"
@@ -87,6 +87,5 @@ jobs:
     - sudo docker exec -t ubuntu /bin/bash -c "cd umbrella && git submodule init"
     - sudo docker exec -t ubuntu /bin/bash -c "cd umbrella && git submodule update"
     - sudo docker exec -t ubuntu /bin/bash -c "mkdir ./umbrella/onnc-build"
-    - sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
-   
-
+    #- sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
+    - sudo docker exec -t ubuntu /bin/bash -c "./umbrella/build.cmake.sh dbg ./umbrella/onnc-build"
