@@ -26,8 +26,8 @@ before_install:
 
 jobs:  
   include:
-  if: os = linux
-   - stage: "Linux Test"               
+  #if: os = linux
+  # - stage: "Linux Test"               
   script: 
     - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
     - sudo docker start ubuntu
