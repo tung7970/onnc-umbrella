@@ -100,3 +100,4 @@ jobs:
 
     - stage: OsxTest
       script: 
+          - echo "this is osx"
