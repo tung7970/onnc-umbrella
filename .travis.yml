@@ -3,13 +3,6 @@ branches:
   only: 
     - master
 language: c
-matrix: 
-  include: 
-    - 
-      dist: trusty
-      os: linux
-    - 
-      os: osx
 notifications: 
   email: false
 services: 
@@ -17,7 +10,8 @@ services:
 stages: 
   jobs: 
     include: 
-      - 
+         - dist: trusty
+         - os: linux
         before_install: 
           - "sudo apt-get update"
           - "sudo apt-get upgrade lxc-docker"
