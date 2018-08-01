@@ -8,16 +8,17 @@ notifications:
 
 # Handle git submodules yourself
 
+git:
+    submodules: false
+
 services: 
   - docker
-
 
 before_install: 
   - sudo apt-get update
   - sudo service docker restart
   - sleep 5
   - sudo docker pull ubuntu:trusty
-
 
 script: 
   - sudo docker create --privileged=true -t --name ubuntu  ubuntu:trusty
