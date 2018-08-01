@@ -18,10 +18,6 @@ git:
 services: 
   - docker
 
-before_install: 
-  - sudo apt-get update
-  - sudo service docker restart
-  - sleep 5
 
 
 matrix:
@@ -30,12 +26,20 @@ matrix:
       script:
 
     - os: linux
+      before_install: 
+      - sudo apt-get update
+      - sudo service docker restart
+      - sleep 5
       script: 
         - sudo docker pull centos:centos7
         - sudo docker create --privileged=true -t --name container  centos:centos7
         - sudo docker start container
 
     - os: linux
+      before_install: 
+      - sudo apt-get update
+      - sudo service docker restart
+      - sleep 5
       script: 
         - sudo docker pull fedora:27
         - sudo docker create --privileged=true -t --name container  fedora:27
@@ -43,8 +47,10 @@ matrix:
 
   
     - os: linux
-     include:
-      script: 
+      before_install: 
+        - sudo apt-get update
+        - sudo service docker restart
+        - sleep 5
         - sudo docker pull ubuntu:trusty
         - sudo docker create --privileged=true -t --name container  ubuntu:trusty
         - sudo docker start container
@@ -96,6 +102,9 @@ matrix:
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends flex"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends ninja-build"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake-curses-gui"
+
+      script: 
+      
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends llvm-5.0-tools"
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-5.0"
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-tidy-5.0"
@@ -103,8 +112,6 @@ matrix:
         #- sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
         #- sudo docker exec -t container /bin/bash -c "tar xopf llvm-5.0.2.src.tar.xz"
         - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
-
-      script: 
         - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && cd build && make -j4"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends gcovr"
         - sudo docker exec -t container /bin/bash -c "rm -rf /var/lib/apt/lists/*"
@@ -117,4 +124,4 @@ matrix:
         #- sudo docker exec -t container /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && ./build.cmake.sh dbg ./onnc-build"
 
-       
+      
