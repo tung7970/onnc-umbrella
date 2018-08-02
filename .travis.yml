@@ -52,7 +52,7 @@ matrix:
         - sudo service docker restart
         - sleep 5
         - sudo docker pull ubuntu:bionic
-        - sudo docker create --privileged=true -t --name container  ubuntu:trusty
+        - sudo docker create --privileged=true -t --name container  ubuntu:bionic
         - sudo docker start container
         - sudo docker exec -t container /bin/bash -c "apt-get update"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends curl"
