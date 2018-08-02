@@ -27,7 +27,7 @@ matrix:
         - sudo apt-get update
         - sudo service docker restart
         - sleep 5
-        - sudo docker create --privileged=true -t --name container  onnc:ubuntu-14.04-llvm
+        - sudo docker create --privileged=true -t --name container  onnc\ubuntu-14.04-llvm
         - sudo docker start container
 
       script: 
@@ -37,5 +37,3 @@ matrix:
         - sudo docker exec -t container /bin/bash -c "mkdir ./umbrella/onnc-build"
         #- sudo docker exec -t container /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && ./build.cmake.sh dbg ./onnc-build"
-
-      
