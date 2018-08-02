@@ -51,15 +51,11 @@ matrix:
         - sudo apt-get update
         - sudo service docker restart
         - sleep 5
-        - sudo docker pull ubuntu:trusty
+        - sudo docker pull ubuntu:bionic
         - sudo docker create --privileged=true -t --name container  ubuntu:trusty
         - sudo docker start container
         - sudo docker exec -t container /bin/bash -c "apt-get update"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends curl"
-        - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends curl"
-        - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/5.0.2/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
-        - sudo docker exec -t container /bin/bash -c "apt-get install xz-utils"
-        - sudo docker exec -t container /bin/bash -c "tar Jxvf llvm-5.0.2.src.tar.xz"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends sudo"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends build-essential"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends gcc-arm-none-eabi"
@@ -85,11 +81,10 @@ matrix:
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends libtool"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends xz-utils"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends make"
-        #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake"
-
-        - sudo docker exec -t container /bin/bash -c "curl https://cmake.org/files/v3.12/cmake-3.12.0.tar.gz --output cmake-3.12.0.tar.gz"
-        - sudo docker exec -t container /bin/bash -c "tar xvf cmake-3.12.0.tar.gz"
-        - sudo docker exec -t container /bin/bash -c "cd cmake-3.12.0 && ./bootstrap && make -j8 && make install"
+        - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake"
+        #- sudo docker exec -t container /bin/bash -c "curl https://cmake.org/files/v3.12/cmake-3.12.0.tar.gz --output cmake-3.12.0.tar.gz"
+        #- sudo docker exec -t container /bin/bash -c "tar xvf cmake-3.12.0.tar.gz"
+        #- sudo docker exec -t container /bin/bash -c "cd cmake-3.12.0 && ./bootstrap && make -j8 && make install"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends g++"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends python"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends git"
@@ -102,21 +97,23 @@ matrix:
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends flex"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends ninja-build"
         - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends cmake-curses-gui"
-
+        - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends gcovr"
+        - sudo docker exec -t container /bin/bash -c "pip install future numpy protobuf lit"
+        - sudo docker exec -t container /bin/bash -c "pip3 install jinja2"
+      before_script:
+        - sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/5.0.2/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
+        - sudo docker exec -t container /bin/bash -c "apt-get install xz-utils"
+        - sudo docker exec -t container /bin/bash -c "tar Jxvf llvm-5.0.2.src.tar.xz"
+        - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
+        - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && cd build && make -j8"
+        - sudo docker exec -t container /bin/bash -c "rm -rf /var/lib/apt/lists/*"
       script: 
-      
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends llvm-5.0-tools"
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-5.0"
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-tidy-5.0"
         #- sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends clang-format-5.0"
         #- sudo docker exec -t container /bin/bash -c "curl http://releases.llvm.org/6.0.1/llvm-5.0.2.src.tar.xz --output llvm-5.0.2.src.tar.xz"
-        #- sudo docker exec -t container /bin/bash -c "tar xopf llvm-5.0.2.src.tar.xz"
-        - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && mkdir build && cd build && cmake ../"
-        - sudo docker exec -t container /bin/bash -c "cd llvm-5.0.2.src && cd build && make -j4"
-        - sudo docker exec -t container /bin/bash -c "apt-get install -y --no-install-recommends gcovr"
-        - sudo docker exec -t container /bin/bash -c "rm -rf /var/lib/apt/lists/*"
-        - sudo docker exec -t container /bin/bash -c "pip install future numpy protobuf lit"
-        - sudo docker exec -t container /bin/bash -c "pip3 install jinja2"
+        #- sudo docker exec -t container /bin/bash -c "tar xopf llvm-5.0.2.src.tar.xz" 
         - sudo docker exec -t container /bin/bash -c "git clone https://github.com/ONNC/umbrella.git"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && git submodule init"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && git submodule update"
