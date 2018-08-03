@@ -27,7 +27,7 @@ matrix:
         - sudo service docker restart
         - sleep 5
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - sleep 5  &&  sudo docker pull onnc/ubuntu-14.04-llvm 
+        - sleep 5  &&  sudo docker pull onnc/ubuntu-14.04-llvm &
         - while (wait "$PID") do echo "test"
         - sudo docker create --privileged=true -t --name container  onnc/ubuntu-14.04-llvm
         - sudo docker start container
