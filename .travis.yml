@@ -8,7 +8,6 @@ dist: trusty
 
 notifications: 
   email: false
-
   
 git:
     submodules: false
@@ -30,7 +29,6 @@ matrix:
         - sudo docker pull onnc/ubuntu-14.04-llvm
         - sudo docker create --privileged=true -t --name container  onnc/ubuntu-14.04-llvm
         - sudo docker start container
-
 
       script: 
         - sudo docker exec -t container /bin/bash -c "git clone https://github.com/ONNC/umbrella.git"
