@@ -3,11 +3,14 @@ branches:
     - travis
 language: c
 
-sudo: required
-dist: trusty
+os:
+  - linux
+#  - osx
 
+sudo: required
 notifications: 
   email: false
+
   
 git:
     submodules: false
@@ -17,8 +20,8 @@ services:
 
 matrix:
   include:
-   #  - os: osx
-   #   script:
+    - os: osx
+      script:
   
     - os: linux
       before_install: 
@@ -29,6 +32,7 @@ matrix:
         - sudo docker pull onnc/ubuntu-14.04-llvm
         - sudo docker create --privileged=true -t --name container  onnc/ubuntu-14.04-llvm
         - sudo docker start container
+
 
       script: 
         - sudo docker exec -t container /bin/bash -c "git clone https://github.com/ONNC/umbrella.git"
