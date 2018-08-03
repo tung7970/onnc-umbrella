@@ -3,11 +3,9 @@ branches:
     - travis
 language: c
 
-os:
-  - linux
-#  - osx
-
 sudo: required
+dist: trusty
+
 notifications: 
   email: false
 
@@ -20,8 +18,8 @@ services:
 
 matrix:
   include:
-    - os: osx
-      script:
+   #  - os: osx
+   #   script:
   
     - os: linux
       before_install: 
