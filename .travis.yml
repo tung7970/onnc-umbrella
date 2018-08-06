@@ -30,8 +30,7 @@ matrix:
         - sudo service docker restart
         - sleep 5
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - sudo docker pull onnc/ubuntu-14.04-llvm &
-        - while ps -p $! > /dev/null; do  sleep 400 & echo "is downloading..."; done
+        - sudo docker pull onnc/ubuntu-14.04-llvm
         - sudo docker create --privileged=true -t --name container  onnc/ubuntu-14.04-llvm
         - sudo docker start container
 
