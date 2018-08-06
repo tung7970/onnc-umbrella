@@ -36,9 +36,9 @@ matrix:
 
 
       script: 
-        - sudo docker exec -t container /bin/bash -c "git clone https://github.com/ONNC/umbrella.git"
+        - sudo docker exec -t container /bin/bash -c "git clone https://github.com/ONNC/onnc-umbrella.git"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && git submodule init"
         - sudo docker exec -t container /bin/bash -c "cd umbrella && git submodule update"
         - sudo docker exec -t container /bin/bash -c "mkdir ./umbrella/onnc-build"
-        #- sudo docker exec -t container /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
-        - sudo docker exec -t container /bin/bash -c "cd umbrella && ./build.cmake.sh dbg ./onnc-build"
+        - sudo docker exec -t container /bin/bash -c "./umbrella/build.sh dbg ./umbrella/onnc-build"
+        #- sudo docker exec -t container /bin/bash -c "cd umbrella && ./build.cmake.sh dbg ./onnc-build"
